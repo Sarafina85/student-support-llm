@@ -9,16 +9,15 @@ from pydantic import BaseModel
 from config import APP_TITLE, APP_VERSION, LOG_FILE, BACKEND_HOST, BACKEND_PORT
 from llm_client import ask_llm
 
-# ── Logging Setup ──────────────────────────────────────────
-os.makedirs("backend/logs", exist_ok=True)
-
+#Logging Setup
+os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
 logging.basicConfig(
     filename=LOG_FILE,
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-# ── FastAPI App ────────────────────────────────────────────
+# FastAPI App 
 app = FastAPI(title=APP_TITLE, version=APP_VERSION)
 
 # Allow frontend to talk to backend
@@ -29,11 +28,11 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-# ── Request Model ──────────────────────────────────────────
+# Request Model
 class QuestionRequest(BaseModel):
     question: str
 
-# ── Endpoints ──────────────────────────────────────────────
+# Endpoints 
 
 @app.get("/")
 def root():
@@ -82,7 +81,7 @@ def ask_question(request: QuestionRequest):
         raise HTTPException(status_code=500, detail="An unexpected error occurred.")
 
 
-# ── Run ────────────────────────────────────────────────────
+#  Run 
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host=BACKEND_HOST, port=BACKEND_PORT, reload=True)

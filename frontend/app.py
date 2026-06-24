@@ -64,43 +64,43 @@ if question:
         with st.chat_message("user"):
             st.write(question)
 
-        # Show loading spinner while waiting
+        # Show user question immediately
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
+                response = None
+                status_code = None
                 try:
                     response = requests.post(
                         f"{BACKEND_URL}/ask",
                         json={"question": question},
-                        timeout=60
+                        timeout=120,
                     )
+                    status_code = response.status_code
+                    response.raise_for_status()
 
-                    if response.status_code == 200:
-                        answer = response.json()["answer"]
-                        st.write(answer)
-
-                        # Save to chat history
-                        st.session_state.chat_history.append({
-                            "question": question,
-                            "answer": answer
-                        })
-
-                    elif response.status_code == 400:
-                        st.warning("⚠️ Please enter a valid question.")
-
-                    elif response.status_code == 503:
-                        st.error("❌ The AI model is not running. Please contact ICT support.")
-
-                    elif response.status_code == 504:
-                        st.error("⏱️ The request timed out. Please try again.")
-
-                    else:
-                        st.error("❌ Something went wrong. Please try again.")
+                    data = response.json()
+                    answer = data.get("answer", "Sorry, I could not generate a response.")
+                    st.write(answer)
+                    st.session_state.chat_history.append({
+                        "question": question,
+                        "answer": answer,
+                    })
 
                 except requests.exceptions.ConnectionError:
                     st.error("❌ Cannot connect to the backend. Is it running?")
 
                 except requests.exceptions.Timeout:
                     st.error("⏱️ The request took too long. Please try again.")
+
+                except requests.exceptions.HTTPError:
+                    if status_code == 400:
+                        st.warning("⚠️ Please enter a valid question.")
+                    elif status_code == 503:
+                        st.error("❌ The AI model is not running. Please contact ICT support.")
+                    elif status_code == 504:
+                        st.error("⏱️ The request timed out. Please try again.")
+                    else:
+                        st.error("❌ Something went wrong. Please try again.")
 
                 except Exception as e:
                     st.error(f"❌ Unexpected error: {str(e)}")

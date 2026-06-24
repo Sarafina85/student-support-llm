@@ -20,7 +20,7 @@ def ask_llm(question: str) -> str:
     }
     
     try:
-        response = requests.post(OLLAMA_URL, json=payload, timeout=60)
+        response = requests.post(OLLAMA_URL, json=payload, timeout=120)
         response.raise_for_status()  # Raises error if status is not 200
         
         data = response.json()
