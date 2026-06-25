@@ -7,3 +7,30 @@
 2026-06-24 15:26:37,858 - INFO - Answer generated: I'm glad you're thinking ahead for your final year. The importance of working on a final year projec...
 2026-06-24 15:35:39,004 - INFO - Question received: HELLO am looking for some answers
 2026-06-24 15:36:48,367 - INFO - Answer generated: Hello! I'm here to help. Can you please tell me what kind of assistance you need? Are you looking fo...
+2026-06-24 15:47:07,297 - INFO - Question received: How do I pay my fees?
+2026-06-24 15:47:11,393 - ERROR - Could not connect to Ollama. Is it running?
+2026-06-24 15:47:11,394 - ERROR - Connection error: The AI model is not running. Please contact ICT support.
+2026-06-24 15:48:33,143 - INFO - Question received: how do i pay my fees
+2026-06-24 15:49:52,767 - INFO - Answer generated: Hi there! I'd be happy to help you with paying your university fees.
+
+To make a payment, you can fol...
+2026-06-25 15:14:02,215 - INFO - Question received: hello ,how can apply on hostel
+2026-06-25 15:15:50,244 - INFO - Answer generated: Hello! I'm here to help. Applying for hostel accommodation at our university is a relatively straigh...
+2026-06-25 15:21:44,029 - INFO - Question received: hello ,how can apply on hostel
+2026-06-25 15:22:55,935 - INFO - Answer generated: Hi there! I'd be happy to help you with your hostel application.
+
+To apply for accommodation, please...
+2026-06-25 15:43:36,274 - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-25 15:47:19,031 - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-25 15:55:39,861 - INFO - Question received: What time does the library close?
+2026-06-25 15:56:36,704 - INFO - Answer generated: Hi there! I'm happy to help you. 
+
+The library at our university typically closes at 8 pm on weekday...

@@ -38,3 +38,4 @@ You can help with:
 - Academic calendar
 - Student conduct
 """
+API_KEY = "university-support-2026"
